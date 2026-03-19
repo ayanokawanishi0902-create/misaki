@@ -23,13 +23,28 @@
 					<h1>msk<span class="font-maven">artworks</span></h1>
 				</a>
 			</div><!--/.site-->
-			<button class="nav-btn">
-				<i class="fa-brands fa-instagram"></i>
-				<i class="fa-solid fa-bars"></i>
+
+			<nav class="main-nav" id="main-nav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="#service">Service</a></li>
+					<li><a href="#works">Works</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#flow">制作のながれ</a></li>
+					<li><a href="contact/index.html">お問い合わせ</a></li>
+				</ul>
+			</nav>
+
+			<button class="nav-btn" id="nav-btn">
+				<a href="https://www.instagram.com/msk_artworks/"><i class="fa-brands fa-instagram"></i></a>
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
 			</button><!--/.nav-btn-->
 		</div><!-- /.header-container -->
 	</header>
-
 	<!-- ＊＊＊＊＊＊＊＊＊＊＊＊ヒーロー領域＊＊＊＊＊＊＊＊＊＊＊＊ -->
 	<section class="hero">
 		<div class="hero-image-container">
@@ -51,7 +66,7 @@
 
 
 	<!-- ＊＊＊＊＊＊＊＊＊＊＊＊サービス内容＊＊＊＊＊＊＊＊＊＊＊＊ -->
-	<section class="service">
+	<section class="service" id="service">
 		<div class="common-container">
 			<h2 class="font-gowun">
 				SERVICE
@@ -89,7 +104,7 @@
 	</section>
 
 
-	<!-- ＊＊＊＊＊＊＊＊＊＊＊＊実績一覧＊＊＊＊＊＊＊＊＊＊＊＊ -->	<section class="works">
+	<!-- ＊＊＊＊＊＊＊＊＊＊＊＊実績一覧＊＊＊＊＊＊＊＊＊＊＊＊ -->	<section class="works" id="works">
 		<div class="works-wrapper common-container">
 			<h2 class="font-gowun">WORKS</h2>
 			
@@ -110,7 +125,7 @@
 	
 
 	<!-- ＊＊＊＊＊＊＊＊＊＊＊＊ABOUTセクション＊＊＊＊＊＊＊＊＊＊＊＊ -->
-	<section class="about">
+	<section class="about" id="about">
 		<h2 class="font-gowun">
 			ABOUT<br>
 			ME
@@ -130,7 +145,7 @@
 	</section>
 
 		<!-- ＊＊＊＊＊＊＊＊＊＊＊＊制作の流れ＊＊＊＊＊＊＊＊＊＊＊＊ -->
-	<section class="flow">
+	<section class="flow" id="flow">
 		<div class=" flow common-container">
 			<h2 class="font-shippori">
 				制作の流れ
@@ -161,7 +176,7 @@
 			お問い合わせください
 		</p>
     <div class="cv-btn-wrap">
-      <a href="#" class="cv-btn">無料見積</a>
+      <a href="contact/index.html" class="cv-btn">無料見積</a>
     </div>
   </div>
 </section>
@@ -174,9 +189,13 @@
 		</div>
 	</footer>
 
-	<a href="#" class="back-to-top font-bellefair">
+	<!-- ＊＊＊＊＊＊＊＊＊＊＊＊Topに戻るボタン＊＊＊＊＊＊＊＊＊＊＊＊ -->
+	<a href="#top" class="back-to-top font-bellefair">
 		<span>Back to</span>
 		<span>TOP</span>
 	</a>
+
+	<!-- ＊＊＊＊＊＊＊＊＊＊＊＊JavaScript読み込み＊＊＊＊＊＊＊＊＊＊＊＊ -->
+	<script src="js/script.js"></script>
 </body>
 </html>

@@ -6,6 +6,8 @@
 
 html {
 	scroll-behavior: smooth;
+  /* アンカーリンクでヘッダーの高さ分を考慮して飛ぶ */
+  scroll-padding-top: 70px;
 }
 * {
 	padding: 0;
@@ -76,8 +78,9 @@ span {
 }
 
 
-
-/* ===================ヘッダー領域=================== */
+/* =========================================================
+	ヘッダー領域
+	========================================================= */
 .header {
 	height: 70px;
 	background: #6e6e97;
@@ -110,7 +113,7 @@ span {
 }
 
 
-/* =========ナビゲーションボタン========= */
+/* =========インスタ・ハンバーガーメニュー========= */
 .nav-btn {
 	display: flex;
 	gap: 15px;
@@ -122,6 +125,76 @@ span {
 	color: #f4f2e8;
 	font-size: 25px;
 }
+
+  /* ボタンの中のハンバーガー容器 */
+.hamburger {
+  position: relative;
+  width: 30px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 3本の線の共通スタイル */
+.hamburger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #f4f2e8; /* 既存のテキスト色に合わせる */
+  transition: all 0.4s; /* アニメーションの速度 */
+}
+
+/* 各線の位置 */
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 11px; }
+.hamburger span:nth-child(3) { top: 22px; }
+
+/* -----------------------------------------
+   is-open（開いた時）の動き
+   ----------------------------------------- */
+
+/* 1本目：45度回転して「右下がり」の線に */
+.is-open .hamburger span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+
+/* 2本目：透明にして消す */
+.is-open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+/* 3本目：-45度回転して「右上がり」の線に */
+.is-open .hamburger span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+}
+
+
+/* =========ナビゲーションメニュー========= */
+/* 初期状態（隠しておく） */
+.main-nav {
+  position: fixed;
+  top: 70px; /* ヘッダーの高さ */
+  right: -100%; /* 画面の右外に飛ばす */
+  width: 100%;
+  height: calc(100vh - 70px);
+  background: rgba(110, 110, 151, 0.95); /* ヘッダーと同じ色味 */
+  transition: right 0.3s; /* 動きを滑らかに */
+  z-index: 99;
+}
+/* ボタンが押された時（JavaScriptでこのクラスを付与する） */
+.main-nav.is-open {
+  right: 0; /* 画面内に戻す */
+}
+.main-nav ul {
+  list-style: none;
+  padding: 40px;
+  text-align: center;
+}
+.main-nav ul li {
+  margin-bottom: 30px;
+}
+
 
 
 /* =========================================================
@@ -535,6 +608,9 @@ span {
   background-color: #2b2b3f;
   color: #f4f2e8;
   border-radius: 50%;
+  transition: opacity 0.5s, visibility 0.5s; /* ふわっとさせる */
+  opacity: 0;
+  visibility: hidden;
   
   /* 中の文字を中央に寄せる */
   display: flex;
@@ -547,13 +623,16 @@ span {
   font-size: 0.7rem;
   line-height: 1.2;
   z-index: 1000;
-  
-  /* 動きを滑らかに */
-  transition: transform 0.3s, opacity 0.3s;
+
 }
 /* 「TOP」の文字だけ少し大きく */
 .back-to-top span:last-child {
   font-size: 1.1rem;
+}
+/* スクロールした時にJSで付与するクラス */
+.back-to-top.is-show {
+  opacity: 1;
+  visibility: visible;
 }
 @media (min-width:768px) {
   .back-to-top {
@@ -572,4 +651,258 @@ span {
     transform: translateY(-5px);
     opacity: 0.9;
 }
+}
+
+
+/* =========================================================
+お問い合わせページ（フォーム）
+	========================================================= */
+.contact-section {
+  padding: 0 20px ;
+  color: #2b2b3f;
+}
+.contact-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #a8a8c1;
+  border-radius: 8px;
+}
+.section-subtitle {
+  text-align: center;
+  margin: 20px auto 0;
+  line-height: 1.5rem;
+  font-size: .9rem;
+}
+/* ---------------フォームの入力エリア--------------- */
+#contact label {
+  font-weight: 500;
+}
+.form-group {
+  margin-bottom: 25px;
+}
+.form-group label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+.form-group label span {
+  background: #f8c3cd; /* 必須の印 */
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+input[type=text],
+input[type=email],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  box-sizing: border-box;
+  outline: none;
+}
+/* フォーカス時の枠線を少しだけ強調 */
+textarea#message:focus,
+input:focus,
+select:focus {
+  border-color: #333;
+}
+/* 欄内（記入例）のフォント指定 */
+#type {
+  font-family: serif;
+  color: #2b2b3f;
+}
+.contact-form {
+  margin-top: 30px;
+}
+.contact-form ::-moz-placeholder {
+  font-family: serif;
+  color: #999;
+  opacity: 1; /* Firefox対策 */
+}
+.contact-form ::placeholder {
+  font-family: serif;
+  color: #999;
+  opacity: 1; /* Firefox対策 */
+}
+/* ブラウザごとの個別の記述（念のため） */
+.contact-form input::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+  font-family: serif;
+  color: #999;
+}
+.contact-form input::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+  font-family: serif;
+  color: #999;
+}
+.contact-form input:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+  font-family: serif;
+  color: #999;
+}
+
+/* ---------- お問い合わせ内容セレクトの装飾 ----------- */
+select {
+  /* ブラウザ標準の矢印を消す */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 40px !important;
+  /* 自作の矢印 */
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpolyline points="6 9 12 15 18 9"/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 18px; /* 矢印の大きさ */
+  /* 背景色 */
+  background-color: rgba(255, 255, 255, 0.8);
+}
+/* ---------------問い合わせメッセージ本文--------------- */
+textarea#message {
+  resize: vertical; /* ユーザーは縦方向だけサイズ調整可 */
+}
+/* ---------------プライバシーポリシー同意チェック--------------- */
+/* 元のチェックボックスを隠す */
+.form-agreement input[type=checkbox] {
+  display: none;
+}
+/* ラベル全体（クリックしやすく余白をとる） */
+.form-agreement label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #333;
+}
+/* チェックボックス（外枠） */
+.form-agreement label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+/* チェックが入った時 */
+.form-agreement input[type=checkbox]:checked + label::before {
+  background-color:  #5d5d7e; /* サイトのアクセントカラー */
+  border-color:  #5d5d7e;
+}
+/* レ点 */
+.form-agreement label {
+  position: relative;
+}
+.form-agreement input[type=checkbox]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 2px;
+  width: 7px;
+  height: 12px;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(45deg); /* 傾けてL字をレ点に見せる */
+}
+.form-agreement {
+  text-align: center;
+  font-size: 0.9rem;
+}
+.form-agreement a {
+  color: #2b2b3f;
+  border-bottom: 1px solid #2b2b3f;
+  padding-bottom: 0.5px;
+}
+
+/* ---------------送信ボタン---------------- */
+.submit-btn {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 40px auto;
+  padding: 10px;
+  background: #f8c3cd;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  box-shadow: 0 8px 20px  #a99ab3;
+  /* アニメーション */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+.submit-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 15px #908498;
+}
+
+/* ---------------説明書き---------------- */
+.form-note {
+  margin-top: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  color: #5d5d7e;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/*============================================================ 
+サンクスページの設定ここから
+ ============================================================*/
+#thanks img {
+  width: 15%;
+}
+
+#thanks .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+/* ---------------TOPへ戻るボタン--------------- */
+.thanks2top-btn {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 0px auto;
+  padding: 15px;
+  background: linear-gradient(135deg, #F9EBD2 0%, #E2C9A1 50%, #D4AF37 100%);
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-family: serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  box-shadow: 0 8px 20px rgba(180, 150, 100, 0.2);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  /* アニメーション */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.thanks2top-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(180, 150, 100, 0.4);
+  filter: brightness(1.05);
 }
