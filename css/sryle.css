@@ -22,11 +22,22 @@ body, html {
 	width: min(85%, 1166px);
 	margin: 0 auto;
 }
+h2 {
+  text-align: center;
+}
 img {
 	display: block;
 }
 a {
 	text-decoration: none;
+}
+li {
+  list-style-type: none;
+  padding-left: 0;
+}
+p,
+span {
+  font-family: "Shippori Mincho", serif;
 }
 
 
@@ -55,6 +66,11 @@ a {
 /* Gowun-dodum-regular */
 .font-gowun {
   font-family: "Gowun Dodum", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.font-bellefair {
+  font-family: "Bellefair", serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -242,12 +258,308 @@ a {
 }
 
 /* =========================================================
-	トップページ（サービス内容）
+トップページ（サービス内容）
 	========================================================= */
-	.service {
-		background-color: #d9d9d9;
-		padding: 30px;
-	}
-	.service h2 {
-		text-align: center;
-	}
+.service {
+	background-color: #d9d9d9;
+	padding: 40px 30px;
+  text-align: center;
+}
+.service h2 {
+  color: #5d5d7e;
+}
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 0px;
+  max-width: 800px;
+  margin: 40px auto 50px;
+}
+@media (min-width:768px) {
+  .service-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.service-list li a {
+  font-display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #5d5d7e;
+  transition: transform .3s ease;
+}
+.service-list li a:hover {
+  transform: translateY(-5px);
+}
+.service-list li a span {
+  color: #5d5d7e;
+  font-size:.8rem;
+}
+.service-list img {
+  width: 50%;
+  max-width: 120px;
+  height: auto;
+  margin: 0 auto 5px;
+}
+/* ==========「個人の方はこちら」ボタン========== */
+.service-btn {
+  margin-top: 60px;
+}
+.service-btn a {
+  background-color: #f1cbcf;
+  color: #333;
+  padding: 10px 30px;
+  display: inline-block;
+  transition: opacity .3s;
+}
+.service-btn a:hover {
+  opacity: .8;
+}
+
+
+/* =========================================================
+トップページ（実績一覧）
+	========================================================= */
+.works {
+  background-color: #fff; /* 背景は白 */
+  padding: 30px;
+  text-align: center;
+}
+.works-wrapper {
+  border: 1px solid  #6e6e97;
+  padding: 10px 20px;
+}
+.works h2 {
+  margin-bottom: 20px;
+  color: #5d5d7e;
+}
+
+/* グリッド本体:4列8行分割 */
+.works-grid {
+display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(8, 30px); 
+  gap: 10px;
+}
+.works-grid .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* 各画像の配置 */
+/* 左側：上 */
+.item1 {
+  grid-column: 1 / 3;
+  grid-row: 1 / 6;
+}
+/* 左側：下 */
+.item6 {
+  grid-column: 1 / 3;
+  grid-row: 6 / 9;
+}
+/* 右側：上 */
+.item2 {
+  grid-column: 3 / 5;
+  grid-row: 1 / 3;
+}
+/* 右側：中央の2つ） */
+.item3 {
+  grid-column: 3 / 4;
+  grid-row: 3 / 5; /* 3行目から開始 */
+}
+.item4 {
+  grid-column: 4 / 5;
+  grid-row: 3 / 5;
+}
+/* 右側：下 */
+.item5 {
+  grid-column: 3 / 5;
+  grid-row: 5 / 9; /* 5行目から開始して、一番下まで長く取る */
+}
+/* and more... の位置 */
+.more-link {
+  text-align: right;
+  max-width: 900px;
+  margin: 30px auto 0;
+}
+.more-link a {
+  color: #5d5d7e;
+  font-size: 0.9rem;
+}
+
+
+/* =========================================================
+トップページ（ABOUT）
+	========================================================= */
+.about {
+  background-color: #a8a8c1;
+  padding: 40px 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.about h2 {
+  color: #5d5d7e;
+  line-height: 1.2rem;
+}
+.my-photo {
+  background-color: #fff;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+}
+
+
+
+/* =========================================================
+トップページ（制作の流れ）
+	========================================================= */
+.flow {
+	background-color: #d9d9d9;
+  padding: 40px 30px 150px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.flow h2 {
+  background-color: #6e6e97;
+  padding: 5px 15px;
+  color: #fff;
+  font-size: 1em;
+}
+.process-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.process-items p {
+  background-color: #fff;
+  color: #5d5d7e;
+  padding: 30px 20px;
+  border-radius: 20px;
+}
+
+
+/* =========================================================
+トップページ（お問い合わせカード）
+	========================================================= */
+/* CVコンテナ本体 */
+.cv-section {
+  max-width: 500px; /* コンテナの幅 */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.cv-container {
+  background-color: #fff;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* 半分上に飛び出させる */
+  max-width: 70%;
+  margin: 0 auto;
+  transform: translateY(-50%);
+  position: relative;
+  z-index: 100;
+}
+
+/* テキストとボタンのスタイル */
+.cv-text {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #2b2b3f;
+}
+.cv-btn {
+  display: inline-block;
+  background-color: #f8c3cd; /* ピンク */
+  color: #6e6e97;
+  padding: 10px 20px;
+  border-radius: 50px; /* カプセル型 */
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: transform 0.3s;
+}
+.cv-btn:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* =========================================================
+フッター領域
+	========================================================= */
+.footer {
+  background-color: #6e6e97;
+  height: 50px;
+}
+.footer-container {
+  width:90%;
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+  color: #d9d9d9;
+  font-size: .8rem;
+  height: 100%;
+  position: relative;
+}
+.copyright {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+}
+
+  /* ==========「TOPに戻る」ボタン========== */
+  .back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 65px;
+  height: 65px;
+  background-color: #2b2b3f;
+  color: #f4f2e8;
+  border-radius: 50%;
+  
+  /* 中の文字を中央に寄せる */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  
+  font-size: 0.7rem;
+  line-height: 1.2;
+  z-index: 1000;
+  
+  /* 動きを滑らかに */
+  transition: transform 0.3s, opacity 0.3s;
+}
+/* 「TOP」の文字だけ少し大きく */
+.back-to-top span:last-child {
+  font-size: 1.1rem;
+}
+@media (min-width:768px) {
+  .back-to-top {
+    right: 40px;
+    bottom: 40px;
+    width: 80px;
+    height: 80px;
+
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+  .back-to-top span:last-child {
+    font-size: 1.3rem;
+  }
+  .back-to-top:hover {
+    transform: translateY(-5px);
+    opacity: 0.9;
+}
+}
